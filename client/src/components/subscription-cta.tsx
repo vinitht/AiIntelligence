@@ -1,9 +1,11 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Infinity, Download, Users } from "lucide-react";
+import { Infinity, Download, Users, ChevronDown, ChevronUp, Star, Clock, Shield } from "lucide-react";
 import { Link } from "wouter";
+import { useState } from "react";
 
 export default function SubscriptionCTA() {
+  const [showDetails, setShowDetails] = useState(false);
   return (
     <section className="mb-16">
       <Card className="gradient-cta p-8 md:p-12 text-white border-none">
@@ -52,14 +54,88 @@ export default function SubscriptionCTA() {
               variant="outline" 
               size="lg"
               className="border-2 border-white text-white hover:bg-white hover:text-primary font-semibold"
+              onClick={() => setShowDetails(!showDetails)}
             >
               View Pricing Plans
+              {showDetails ? <ChevronUp className="ml-2 h-4 w-4" /> : <ChevronDown className="ml-2 h-4 w-4" />}
             </Button>
           </div>
           
           <p className="text-blue-100 text-sm mt-4">
             Instant access • Cancel anytime
           </p>
+          
+          {/* Expanded Details Section */}
+          {showDetails && (
+            <div className="mt-8 pt-8 border-t border-white/20">
+              <div className="grid md:grid-cols-2 gap-8 text-left">
+                {/* Pricing Column */}
+                <div className="bg-white/10 backdrop-blur rounded-lg p-6">
+                  <div className="flex items-center gap-2 mb-4">
+                    <Star className="h-5 w-5 text-yellow-300" />
+                    <h3 className="text-xl font-bold">AI Hub Pro</h3>
+                  </div>
+                  <div className="text-3xl font-bold mb-2">$19<span className="text-lg font-normal">/month</span></div>
+                  <p className="text-blue-100 mb-4">Billed monthly • Cancel anytime</p>
+                  
+                  <ul className="space-y-3">
+                    <li className="flex items-center gap-2">
+                      <Infinity className="h-4 w-4" />
+                      <span>Unlimited premium content access</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <Download className="h-4 w-4" />
+                      <span>Download articles for offline reading</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <Users className="h-4 w-4" />
+                      <span>Exclusive expert community</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <Clock className="h-4 w-4" />
+                      <span>Early access to new content</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <Shield className="h-4 w-4" />
+                      <span>Ad-free experience</span>
+                    </li>
+                  </ul>
+                </div>
+                
+                {/* What You Get Column */}
+                <div className="bg-white/10 backdrop-blur rounded-lg p-6">
+                  <h3 className="text-xl font-bold mb-4">What You Get Access To</h3>
+                  
+                  <div className="space-y-4">
+                    <div>
+                      <h4 className="font-semibold text-blue-100">Premium Tutorials</h4>
+                      <p className="text-sm text-blue-200">In-depth guides on GPT-4, Claude, Midjourney, and more</p>
+                    </div>
+                    
+                    <div>
+                      <h4 className="font-semibold text-blue-100">Research Papers</h4>
+                      <p className="text-sm text-blue-200">Latest AI research summaries and analysis</p>
+                    </div>
+                    
+                    <div>
+                      <h4 className="font-semibold text-blue-100">Expert Insights</h4>
+                      <p className="text-sm text-blue-200">Weekly insights from AI industry leaders</p>
+                    </div>
+                    
+                    <div>
+                      <h4 className="font-semibold text-blue-100">Tool Reviews</h4>
+                      <p className="text-sm text-blue-200">Comprehensive reviews of new AI tools and platforms</p>
+                    </div>
+                    
+                    <div>
+                      <h4 className="font-semibold text-blue-100">Community Access</h4>
+                      <p className="text-sm text-blue-200">Join discussions with AI professionals and enthusiasts</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </Card>
     </section>
