@@ -23,6 +23,14 @@ export default function HeroSection({ onSearch }: HeroSectionProps) {
     }
   };
 
+  const handleViewFeatures = () => {
+    // Scroll to subscription CTA section
+    const subscriptionSection = document.querySelector('[data-section="subscription-cta"]');
+    if (subscriptionSection) {
+      subscriptionSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <section className="gradient-hero py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -59,7 +67,12 @@ export default function HeroSection({ onSearch }: HeroSectionProps) {
             <Button asChild size="lg" className="font-semibold">
               <Link href="/subscribe">Subscribe Now</Link>
             </Button>
-            <Button variant="outline" size="lg" className="font-semibold border-primary text-primary hover:bg-primary hover:text-white">
+            <Button 
+              variant="outline" 
+              size="lg" 
+              className="font-semibold border-primary text-primary hover:bg-primary hover:text-white"
+              onClick={handleViewFeatures}
+            >
               View Premium Features
             </Button>
           </div>

@@ -7,7 +7,7 @@ import { useState } from "react";
 export default function SubscriptionCTA() {
   const [showDetails, setShowDetails] = useState(false);
   return (
-    <section className="mb-16">
+    <section className="mb-16" data-section="subscription-cta">
       <Card className="gradient-cta p-8 md:p-12 text-white border-none">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
