@@ -57,7 +57,7 @@ export default function HeroSection({ onSearch }: HeroSectionProps) {
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
             <Button asChild size="lg" className="font-semibold">
-              <Link href="/subscribe">Start Free Trial</Link>
+              <Link href="/subscribe">Subscribe Now</Link>
             </Button>
             <Button variant="outline" size="lg" className="font-semibold border-primary text-primary hover:bg-primary hover:text-white">
               View Premium Features

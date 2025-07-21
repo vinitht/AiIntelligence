@@ -46,7 +46,7 @@ export default function SubscriptionCTA() {
               size="lg"
               className="bg-white text-primary hover:bg-gray-100 font-semibold"
             >
-              <Link href="/subscribe">Start 14-Day Free Trial</Link>
+              <Link href="/subscribe">Subscribe Now</Link>
             </Button>
             <Button 
               variant="outline" 
@@ -58,7 +58,7 @@ export default function SubscriptionCTA() {
           </div>
           
           <p className="text-blue-100 text-sm mt-4">
-            No credit card required • Cancel anytime
+            Instant access • Cancel anytime
           </p>
         </div>
       </Card>

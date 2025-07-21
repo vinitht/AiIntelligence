@@ -262,7 +262,7 @@ export default function Subscribe() {
               <div className="bg-gradient-to-r from-primary to-blue-600 text-white p-6 rounded-xl">
                 <div className="text-center">
                   <div className="text-3xl font-bold mb-2">$19/month</div>
-                  <div className="text-blue-100">Cancel anytime • 14-day free trial</div>
+                  <div className="text-blue-100">Cancel anytime • Instant access</div>
                 </div>
               </div>
             </div>
@@ -270,7 +270,7 @@ export default function Subscribe() {
             {/* Signup Form */}
             <Card className="max-w-md mx-auto w-full">
               <CardHeader>
-                <CardTitle className="text-center">Start Your Free Trial</CardTitle>
+                <CardTitle className="text-center">Subscribe to AI Hub Pro</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="space-y-2">
@@ -302,11 +302,11 @@ export default function Subscribe() {
                   className="w-full"
                   size="lg"
                 >
-                  Start 14-Day Free Trial
+                  Subscribe Now - $19/month
                 </Button>
                 
                 <p className="text-sm text-gray-600 text-center">
-                  No credit card required for trial • Cancel anytime
+                  Instant access • Cancel anytime
                 </p>
               </CardContent>
             </Card>
