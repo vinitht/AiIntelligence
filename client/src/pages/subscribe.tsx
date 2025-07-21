@@ -207,23 +207,23 @@ export default function Subscribe() {
     <div className="min-h-screen bg-gray-50">
       <Header />
       
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
         {/* Header Section */}
-        <div className="text-center mb-12">
+        <div className="text-center mb-8 sm:mb-12">
           <div className="flex items-center justify-center gap-2 mb-4">
-            <Brain className="h-8 w-8 text-primary" />
-            <h1 className="text-4xl font-bold text-gray-900">AI Hub Pro</h1>
+            <Brain className="h-6 w-6 sm:h-8 sm:w-8 text-primary" />
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900">AI Hub Pro</h1>
           </div>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+          <p className="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto px-4">
             Unlock unlimited access to premium AI content, tutorials, and expert insights
           </p>
         </div>
 
         {!showPayment ? (
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 items-start lg:items-center">
             {/* Features Section */}
-            <div className="space-y-8">
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">
+            <div className="space-y-6 sm:space-y-8 order-2 lg:order-1">
+              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 sm:mb-6">
                 What's Included in Pro
               </h2>
               
@@ -268,7 +268,7 @@ export default function Subscribe() {
             </div>
 
             {/* Signup Form */}
-            <Card className="max-w-md mx-auto w-full">
+            <Card className="max-w-md mx-auto w-full order-1 lg:order-2">
               <CardHeader>
                 <CardTitle className="text-center">Subscribe to AI Hub Pro</CardTitle>
               </CardHeader>

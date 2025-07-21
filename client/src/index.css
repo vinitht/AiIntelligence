@@ -160,4 +160,57 @@
   .content-card {
     @apply text-sm;
   }
+  
+  /* Mobile typography improvements */
+  h1 {
+    @apply leading-tight;
+  }
+  
+  /* Better mobile button sizing */
+  .btn-mobile {
+    @apply min-h-[44px] text-base;
+  }
+  
+  /* Mobile navigation improvements */
+  .mobile-nav {
+    @apply fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-4;
+  }
+}
+
+/* Tablet and mobile breakpoints */
+@media (max-width: 768px) {
+  .container-mobile {
+    @apply px-4;
+  }
+  
+  .grid-responsive {
+    @apply grid-cols-1;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+  .grid-responsive {
+    @apply grid-cols-2;
+  }
+}
+
+@media (min-width: 1025px) {
+  .grid-responsive {
+    @apply grid-cols-3;
+  }
+}
+
+/* Touch-friendly improvements */
+@media (hover: none) and (pointer: coarse) {
+  .touch-friendly {
+    @apply min-h-[44px] min-w-[44px];
+  }
+  
+  .content-card {
+    @apply transform-none;
+  }
+  
+  .content-card:hover {
+    @apply transform-none scale-100;
+  }
 }

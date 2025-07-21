@@ -38,20 +38,24 @@ export default function Header() {
             </nav>
             
             {/* User Actions */}
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-2 sm:space-x-4">
               <Button
                 variant="ghost"
                 size="icon"
-                className="hidden md:flex text-gray-700 hover:text-primary"
+                className="hidden md:flex text-gray-700 hover:text-primary touch-friendly"
               >
                 <Search className="h-5 w-5" />
               </Button>
               
-              <Button asChild>
+              <Button asChild className="hidden sm:flex">
                 <Link href="/subscribe">Upgrade to Pro</Link>
               </Button>
               
-              <Button variant="ghost" size="icon" className="text-gray-700 hover:text-primary">
+              <Button asChild size="sm" className="sm:hidden">
+                <Link href="/subscribe">Pro</Link>
+              </Button>
+              
+              <Button variant="ghost" size="icon" className="text-gray-700 hover:text-primary touch-friendly">
                 <User className="h-5 w-5" />
               </Button>
               
@@ -59,7 +63,7 @@ export default function Header() {
               <Button
                 variant="ghost"
                 size="icon"
-                className="md:hidden text-gray-700 hover:text-primary"
+                className="md:hidden text-gray-700 hover:text-primary touch-friendly"
                 onClick={() => setIsMobileMenuOpen(true)}
               >
                 <Menu className="h-5 w-5" />

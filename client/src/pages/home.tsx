@@ -41,15 +41,15 @@ export default function Home() {
       
       <HeroSection onSearch={handleSearch} />
       
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
         {/* Content Categories */}
-        <section className="mb-16">
-          <div className="flex flex-col md:flex-row justify-between items-center mb-8">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4 md:mb-0">
+        <section className="mb-12 sm:mb-16">
+          <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center mb-6 sm:mb-8 gap-4">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">
               {searchQuery ? `Search Results for "${searchQuery}"` : "Explore AI Content"}
             </h2>
             
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-2 w-full lg:w-auto justify-start lg:justify-end">
               {categories.map((category) => (
                 <Button
                   key={category.id}
@@ -70,15 +70,15 @@ export default function Home() {
             </div>
           ) : (
             <>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
                 {content.map((item) => (
                   <ContentCard key={item.id} content={item} />
                 ))}
               </div>
               
               {content.length === 0 && (
-                <div className="text-center py-12">
-                  <p className="text-gray-600 text-lg">
+                <div className="text-center py-8 sm:py-12 px-4">
+                  <p className="text-gray-600 text-base sm:text-lg">
                     {searchQuery 
                       ? `No results found for "${searchQuery}"` 
                       : "No content available in this category"

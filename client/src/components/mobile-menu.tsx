@@ -1,5 +1,5 @@
 import { Link } from "wouter";
-import { Brain, X } from "lucide-react";
+import { Brain, X, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 interface MobileMenuProps {
@@ -48,10 +48,16 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
               Research
             </button>
             
-            <div className="border-t pt-4 mt-6">
-              <Button asChild className="w-full mb-2">
+            <div className="border-t pt-6 mt-6 space-y-4">
+              <Button asChild className="w-full touch-friendly">
                 <Link href="/subscribe" onClick={onClose}>Upgrade to Pro</Link>
               </Button>
+              
+              <div className="flex items-center justify-center pt-2">
+                <Button variant="ghost" size="icon" className="text-gray-700 hover:text-primary touch-friendly">
+                  <Search className="h-5 w-5" />
+                </Button>
+              </div>
             </div>
           </nav>
         </div>
