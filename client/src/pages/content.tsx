@@ -15,6 +15,13 @@ export default function ContentPage() {
 
   const { data: content, isLoading } = useQuery<Content>({
     queryKey: ["/api/content", contentId],
+    queryFn: async () => {
+      const response = await fetch(`/api/content/${contentId}`);
+      if (!response.ok) {
+        throw new Error('Failed to fetch content');
+      }
+      return response.json();
+    },
     enabled: !!contentId,
   });
 

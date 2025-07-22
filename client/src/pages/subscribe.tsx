@@ -37,10 +37,20 @@ const MockPaymentForm = ({ onSuccess }: { onSuccess: () => void }) => {
 
     try {
       // Mock payment processing
-      await apiRequest("POST", "/api/confirm-payment", {
-        subscriptionId: "mock_subscription_123",
-        paymentMethodId: "mock_payment_method"
+      const response = await fetch("/api/confirm-payment", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          subscriptionId: "mock_subscription_123",
+          paymentMethodId: "mock_payment_method"
+        })
       });
+      
+      if (!response.ok) {
+        throw new Error('Payment processing failed');
+      }
 
       toast({
         title: "Payment Successful",
