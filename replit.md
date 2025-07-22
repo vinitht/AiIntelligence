@@ -2,7 +2,7 @@
 
 ## Overview
 
-AI Hub is a modern content platform focused on artificial intelligence topics, built with a React frontend and Express.js backend. The application features content discovery, search functionality, subscription management with mock payment processing, and a premium content model. The platform is designed to be cross-platform and scalable with a minimalist blue UI design.
+AI Hub is a modern content platform focused on artificial intelligence topics, built with a React frontend and Express.js backend. The application features real-time AI content from current developments, search functionality, subscription management with mock payment processing, and a premium content model. The platform displays authentic AI news, research, tools, and tutorials from sources like OpenAI, Google AI, and arXiv. The platform is designed to be cross-platform and scalable with a minimalist blue UI design.
 
 ## User Preferences
 
@@ -44,7 +44,15 @@ The application uses three main entities:
 - **Topics**: Trending topics with article counts and icons
 
 ### Storage Layer
-The system implements an abstraction layer (`IStorage`) with both in-memory implementation for development and a full PostgreSQL database implementation for production. The application now uses real database storage with Neon Database (serverless PostgreSQL) and automatic data seeding on first run.
+The system implements an abstraction layer (`IStorage`) with both in-memory implementation for development and a full PostgreSQL database implementation for production. The application now uses real database storage with Neon Database (serverless PostgreSQL) and real-time content refreshing system.
+
+### Real-Time Content System
+The platform features a comprehensive real-time content service (`realTimeContentService`) that provides:
+- **Current AI News**: OpenAI GPT-4o updates, Google Gemini 2.5 Pro achievements, AI agent developments
+- **Latest Research**: Multimodal AI breakthroughs, reasoning capabilities, scientific applications  
+- **AI Tools**: Sora video generation, Project Mariner web browsing, developer platforms
+- **Tutorials**: Building with latest AI models, integration guides, best practices
+- **Live Refresh System**: Real-time content updates with status dashboard and category breakdown
 
 ## Data Flow
 

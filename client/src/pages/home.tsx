@@ -15,7 +15,22 @@ export default function Home() {
   const [searchQuery, setSearchQuery] = useState("");
 
   const { data: content = [], isLoading } = useQuery<Content[]>({
-    queryKey: ["/api/content", { category: selectedCategory, search: searchQuery }],
+    queryKey: ["/api/content", selectedCategory, searchQuery],
+    queryFn: async () => {
+      const params = new URLSearchParams();
+      if (selectedCategory !== "all") {
+        params.append("category", selectedCategory);
+      }
+      if (searchQuery) {
+        params.append("search", searchQuery);
+      }
+      
+      const response = await fetch(`/api/content?${params.toString()}`);
+      if (!response.ok) {
+        throw new Error('Failed to fetch content');
+      }
+      return response.json();
+    },
   });
 
   const categories = [
