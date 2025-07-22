@@ -6,7 +6,6 @@ import HeroSection from "@/components/hero-section";
 import ContentCard from "@/components/content-card";
 import SubscriptionCTA from "@/components/subscription-cta";
 import TrendingTopics from "@/components/trending-topics";
-import { ContentRefresh } from "@/components/content-refresh";
 import { Button } from "@/components/ui/button";
 import type { Content } from "@shared/schema";
 
@@ -97,11 +96,6 @@ export default function Home() {
               )}
             </>
           )}
-        </section>
-
-        {/* Real-World Content Integration */}
-        <section className="mb-12 sm:mb-16">
-          <ContentRefresh />
         </section>
         
         <SubscriptionCTA />

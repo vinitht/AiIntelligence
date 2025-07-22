@@ -1,7 +1,6 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { getStorage } from "./storage";
-import { contentFetcher } from "./services/contentFetcher";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   
@@ -128,55 +127,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Fetch real-world content
-  app.post('/api/refresh-content', async (req, res) => {
-    try {
-      const storage = await getStorage();
-      
-      // Fetch real-world content from various sources
-      const realWorldContent = await contentFetcher.fetchAllRealWorldContent();
-      
-      if (realWorldContent.length === 0) {
-        return res.json({ message: "No new content found", added: 0 });
-      }
 
-      // Convert to database format
-      const contentToAdd = contentFetcher.convertToInsertContent(realWorldContent);
-      
-      // Add to database
-      let addedCount = 0;
-      for (const contentItem of contentToAdd) {
-        try {
-          await storage.createContent(contentItem);
-          addedCount++;
-        } catch (error) {
-          console.error('Error adding content item:', error);
-        }
-      }
-
-      res.json({ 
-        message: `Successfully added ${addedCount} new content items from real-world sources`,
-        added: addedCount,
-        sources: ['Hacker News', 'Reddit', 'arXiv', 'AI Tools']
-      });
-    } catch (error: any) {
-      console.error('Content refresh error:', error);
-      return res.status(500).json({ message: error.message });
-    }
-  });
-
-  // Get content refresh status
-  app.get('/api/content-sources', (req, res) => {
-    res.json({
-      sources: [
-        { name: 'Hacker News', description: 'AI-related discussions from tech community', category: 'news' },
-        { name: 'Reddit AI Communities', description: 'Posts from AI and ML subreddits', category: 'news' },
-        { name: 'arXiv Papers', description: 'Latest AI research papers', category: 'research' },
-        { name: 'AI Tools Directory', description: 'Popular AI development tools', category: 'tools' }
-      ],
-      lastRefresh: new Date().toISOString()
-    });
-  });
 
   const httpServer = createServer(app);
   return httpServer;
