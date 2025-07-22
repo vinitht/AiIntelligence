@@ -1,12 +1,13 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
-import { storage } from "./storage";
+import { getStorage } from "./storage";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   
   // Content routes
   app.get("/api/content", async (req, res) => {
     try {
+      const storage = await getStorage();
       const { category, search } = req.query;
       let content;
       
@@ -26,6 +27,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   app.get("/api/content/:id", async (req, res) => {
     try {
+      const storage = await getStorage();
       const id = parseInt(req.params.id);
       const content = await storage.getContentById(id);
       
@@ -45,6 +47,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Topics route
   app.get("/api/topics", async (req, res) => {
     try {
+      const storage = await getStorage();
       const topics = await storage.getAllTopics();
       res.json(topics);
     } catch (error: any) {

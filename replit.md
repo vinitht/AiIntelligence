@@ -44,7 +44,7 @@ The application uses three main entities:
 - **Topics**: Trending topics with article counts and icons
 
 ### Storage Layer
-The system implements an abstraction layer (`IStorage`) with both in-memory implementation for development and database implementation for production. This allows for easy testing and development without requiring database setup.
+The system implements an abstraction layer (`IStorage`) with both in-memory implementation for development and a full PostgreSQL database implementation for production. The application now uses real database storage with Neon Database (serverless PostgreSQL) and automatic data seeding on first run.
 
 ## Data Flow
 
