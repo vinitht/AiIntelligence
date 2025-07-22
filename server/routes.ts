@@ -1,6 +1,7 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { getStorage } from "./storage";
+import { realTimeContentService } from "./services/realTimeContent";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   
@@ -127,7 +128,63 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Real-time content refresh endpoint
+  app.post('/api/refresh-realtime-content', async (req, res) => {
+    try {
+      const storage = await getStorage();
+      
+      // Get current real-time AI content
+      const currentContent = realTimeContentService.getAllCurrentContent();
+      
+      // Convert to database format
+      const contentToAdd = realTimeContentService.convertToInsertContent(currentContent);
+      
+      // Clear existing content and add fresh real-time content
+      await storage.clearAllContent();
+      
+      // Add new real-time content
+      let addedCount = 0;
+      for (const contentItem of contentToAdd) {
+        try {
+          await storage.createContent(contentItem);
+          addedCount++;
+        } catch (error) {
+          console.error('Error adding content item:', error);
+        }
+      }
 
+      res.json({ 
+        message: `Successfully refreshed with ${addedCount} real-time AI content items`,
+        added: addedCount,
+        categories: {
+          news: currentContent.filter(c => c.category === 'news').length,
+          research: currentContent.filter(c => c.category === 'research').length,
+          tools: currentContent.filter(c => c.category === 'tools').length,
+          tutorials: currentContent.filter(c => c.category === 'tutorial').length
+        },
+        lastUpdate: new Date().toISOString()
+      });
+    } catch (error: any) {
+      console.error('Real-time content refresh error:', error);
+      return res.status(500).json({ message: error.message });
+    }
+  });
+
+  // Get real-time content status
+  app.get('/api/realtime-status', (req, res) => {
+    const currentContent = realTimeContentService.getAllCurrentContent();
+    res.json({
+      totalItems: currentContent.length,
+      categories: {
+        news: currentContent.filter(c => c.category === 'news').length,
+        research: currentContent.filter(c => c.category === 'research').length,
+        tools: currentContent.filter(c => c.category === 'tools').length,
+        tutorials: currentContent.filter(c => c.category === 'tutorial').length
+      },
+      latestUpdate: currentContent[0]?.publishedAt || new Date(),
+      sources: ['OpenAI News', 'Google AI Blog', 'arXiv Research', 'Developer Platforms']
+    });
+  });
 
   const httpServer = createServer(app);
   return httpServer;

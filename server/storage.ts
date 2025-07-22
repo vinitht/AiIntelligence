@@ -17,6 +17,7 @@ export interface IStorage {
   createContent(content: InsertContent): Promise<Content>;
   incrementViewCount(id: number): Promise<void>;
   searchContent(query: string): Promise<Content[]>;
+  clearAllContent(): Promise<void>;
   
   getAllTopics(): Promise<Topic[]>;
   createTopic(topic: InsertTopic): Promise<Topic>;
@@ -212,6 +213,8 @@ export class MemStorage implements IStorage {
       id, 
       viewCount: 0,
       isPremium: insertContent.isPremium ?? false,
+      duration: insertContent.duration ?? null,
+      authorId: insertContent.authorId ?? null,
       createdAt: new Date()
     };
     this.content.set(id, contentItem);
@@ -249,6 +252,11 @@ export class MemStorage implements IStorage {
     };
     this.topics.set(id, topic);
     return topic;
+  }
+
+  async clearAllContent(): Promise<void> {
+    this.content.clear();
+    this.currentContentId = 1;
   }
 }
 
@@ -359,6 +367,10 @@ export class DatabaseStorage implements IStorage {
   async createTopic(insertTopic: InsertTopic): Promise<Topic> {
     const result = await this.db.insert(topics).values(insertTopic).returning();
     return result[0];
+  }
+
+  async clearAllContent(): Promise<void> {
+    await this.db.delete(content);
   }
 }
 
