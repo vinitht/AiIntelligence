@@ -43,8 +43,18 @@ export function RealTimeRefresh() {
   // Refresh mutation
   const refreshMutation = useMutation({
     mutationFn: async (): Promise<RefreshResponse> => {
-      const response = await apiRequest('/api/refresh-realtime-content', 'POST');
-      return response;
+      const response = await fetch('/api/refresh-realtime-content', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      
+      return await response.json();
     },
     onMutate: () => setIsRefreshing(true),
     onSuccess: (data: RefreshResponse) => {

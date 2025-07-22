@@ -57,7 +57,7 @@ export default function TrendingTopics() {
                   {topic.name}
                 </h3>
                 <p className="text-sm text-gray-600">
-                  {topic.articleCount.toLocaleString()} articles
+                  {(topic.articleCount || 0).toLocaleString()} articles
                 </p>
               </CardContent>
             </Card>
